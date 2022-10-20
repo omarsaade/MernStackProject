@@ -6,6 +6,9 @@ import Backdrop from './Backdrop';
 import './Modal.css';
 
 const ModalOverlay = props => {
+
+
+  
   const content = (
     <div className={`modal ${props.className}`} style={props.style}>
       <header className={`modal__header ${props.headerClass}`}>
@@ -27,6 +30,9 @@ const ModalOverlay = props => {
   );
   return ReactDOM.createPortal(content, document.getElementById('modal-hook'));
 };
+
+
+
 
 const Modal = props => {
   return (
