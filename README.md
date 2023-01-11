@@ -1,2 +1,2 @@
 # Mern
-Mern Stack 
+Building fullstack React.js applications with Node.js, Express.js & MongoDB (MERN)
