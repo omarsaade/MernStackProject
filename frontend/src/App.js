@@ -9,6 +9,14 @@ import Auth from "./user/pages/Auth";
 import { AuthContext } from "./shared/context/auth-context";
 
 const App = () => {
+  /*
+
+
+
+
+
+
+  */
   let navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
