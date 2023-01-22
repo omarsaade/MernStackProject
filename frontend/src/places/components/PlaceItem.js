@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
@@ -11,6 +10,7 @@ const PlaceItem = (props) => {
   const auth = useContext(AuthContext);
 
   const [showMap, setShowMap] = useState(false);
+
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
@@ -31,7 +31,7 @@ const PlaceItem = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Modal
         show={showMap}
         onCancel={closeMapHandler}
@@ -92,7 +92,7 @@ const PlaceItem = (props) => {
           </div>
         </Card>
       </li>
-    </React.Fragment>
+    </>
   );
 };
 
