@@ -30,6 +30,7 @@ const Input = (props) => {
   });
 
   const { id, onInput } = props;
+  // he la hal component , li fo2 lal props
   const { value, isValid } = inputState;
 
   useEffect(() => {

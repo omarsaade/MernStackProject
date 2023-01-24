@@ -31,7 +31,6 @@ const Auth = () => {
     false
   );
 
-  //
   const switchModeHandler = () => {
     if (!isLoginMode) {
       setFormData(
@@ -75,6 +74,7 @@ const Auth = () => {
             label="Your Name"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a name."
+            // inputId: email , value:omar@.com , isValid:true
             onInput={inputHandler}
           />
         )}
