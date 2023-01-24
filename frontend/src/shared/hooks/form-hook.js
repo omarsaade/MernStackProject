@@ -11,10 +11,10 @@ const formReducer = (state, action) => {
         }
         if (inputId === action.inputId) {
           formIsValid = formIsValid && action.isValid;
-          console.log(formIsValid);
+          // console.log(formIsValid);
         } else {
           formIsValid = formIsValid && state.inputs[inputId].isValid;
-          console.log(formIsValid);
+          // console.log(formIsValid);
         }
       }
 
