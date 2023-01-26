@@ -1,6 +1,7 @@
 const express = require("express");
 
 // const {Router} = require("express"); instead of .Router()
+// const router = Router();
 
 const { check } = require("express-validator");
 
@@ -23,7 +24,11 @@ router.post(
 );
 
 // like update
-router.patch("/:pid", placesControllers.updatePlace);
+router.patch(
+  "/:pid",
+  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  placesControllers.updatePlace
+);
 
 router.delete("/:pid", placesControllers.deletePlace);
 
