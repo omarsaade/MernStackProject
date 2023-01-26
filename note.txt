@@ -1,0 +1,89 @@
+app.js
+
+
+//  Third party library
+const express = require("express");
+const bodyParser = require("body-parser");
+// importing our routes
+const placesRoutes = require("./routes/places-routes");
+
+const app = express();
+
+app.use("/api/places", placesRoutes);
+
+app.use((error, req, res, next) => {
+  if (res.headersSent) {
+    console.log(res.headersSent);
+    return next(error);
+  }
+  res.status(error.code || 500);
+  //   res.status(error.code || 500).json(...); fina na3mul chaining
+  res.json({ message: error.message || "An unknown error occured!" });
+});
+
+app.listen(5000);
+
+
+
+
+
+
+
+places-routes.js
+
+const express = require("express");
+const router = express.Router();
+
+const DUMMY_PLACES = [
+  {
+    id: "p1",
+    title: "Empire State Building",
+    description: "One of the most famous sky scarpers in the world!",
+    location: {
+      lat: 40.7484474,
+      lng: -73.987156,
+    },
+    address: "20 w 34th ST,  New York , NY 10001",
+    creator: "u1",
+  },
+];
+
+router.get("/:pid", (req, res, next) => {
+  const placeId = req.params.pid;
+  const place = DUMMY_PLACES.find((p) => {
+    return p.id === placeId;
+  });
+
+  if (!place) {
+    // kif mna3mul handle ?
+    // 1 throw new Error(..) aw 2 next("error...");
+    // async ..use next()  / synchronous use throw error
+    const error = new Error("Could not find a place for the provided id.");
+    error.code = 404;
+    throw error;
+  }
+
+  res.json({ place }); // => {place} => {place:place}
+});
+
+router.get("/user/:uid", (req, res, next) => {
+  const userId = req.params.uid;
+  const place = DUMMY_PLACES.find((p) => {
+    return p.creator === userId;
+  });
+  if (!place) {
+    const error = new Error("Could not find a place for the provided user id.");
+    error.code = 404;
+    return next(error); // hon darure nhet return..fo2 throw hye bta3mul return
+    // return res
+    //   .status(404)
+    //   .json({ message: "Could not find a place for the provided user id." });
+  }
+  res.json({ place });
+});
+
+module.exports = router;
+
+
+
+================================================
