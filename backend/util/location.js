@@ -1,19 +1,17 @@
 const axios = require("axios");
 const HttpError = require("../models/http-error");
-const API_KEY = "AIzsjsjjejd28282jensdnnsd";
+const API_KEY = "pk.0a8ef5f905b4aaf8fb68f134c0da4969";
 
-//dummy function to use
 async function getCoordsForAddress(address) {
-  // fall back u dont have a credit card
-  //   return { lat: 40.7484474, lng: -73.987156 };
-  // sending request from our node server to another server
   const response = await axios.get(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+    `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${encodeURIComponent(
       address
-    )}&key=${API_KEY}`
+    )}&format=json`
   );
 
-  const data = response.data;
+  const data = response.data[0];
+
+  console.log(data);
 
   if (!data || data.status === "ZERO_RESULTS") {
     const error = new HttpError(
@@ -23,7 +21,13 @@ async function getCoordsForAddress(address) {
     throw error;
   }
 
-  const coordinates = data.results[0].geometry.location;
+  const coorLat = data.lat;
+  const coorLon = data.lon;
+  const coordinates = {
+    lat: coorLat,
+    lng: coorLon,
+  };
+
   return coordinates;
 }
 
