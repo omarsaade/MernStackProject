@@ -8,7 +8,7 @@ async function getCoordsForAddress(address) {
   //   return { lat: 40.7484474, lng: -73.987156 };
   // sending request from our node server to another server
   const response = await axios.get(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       address
     )}&key=${API_KEY}`
   );
