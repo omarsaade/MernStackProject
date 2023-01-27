@@ -1,3 +1,35 @@
+backend   MVC : Model View Controller
+
+
+    1-  app.js: starting path (index.js)
+         middleware function for handling error
+     
+    2-  routes: 
+      places-routes: (exact path , fn) + validation 
+      users-routes:  (exact path , fn) + validation 
+
+    3-  controllers: 
+      places-controllers.js: middleware fun tab3un kell path khassa bel places
+      getPlaceById , getPlacesByUserId , createPlace , updatePlace , deletePlace
+
+      users-controllers.js: middleware fun tab3un kell path khassa bel users
+      getUsers , signup , login
+       
+      
+     4-  models: Class HttpError (customizating error)
+      
+
+     5-  util: Location.js: converting addresses to coordinates
+
+
+       
+   
+
+
+
+===============================================================
+
+
 app.js
 
 
@@ -88,3 +120,10 @@ module.exports = router;
 
 ================================================
 google geocoding api
+
+==================================================================================================================================
+==================================================================================================================================
+==================================================================================================================================
+==================================================================================================================================
+==================================================================================================================================
+==================================================================================================================================
