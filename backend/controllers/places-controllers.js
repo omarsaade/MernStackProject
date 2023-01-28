@@ -85,10 +85,12 @@ const updatePlace = (req, res, next) => {
 
   const { title, description } = req.body;
   const placeId = req.params.pid;
+
   const updatedPlace = { ...DUMMY_PLACES.find((p) => p.id === placeId) };
   const placeIndex = DUMMY_PLACES.findIndex((p) => p.id == placeId);
   updatedPlace.title = title;
   updatedPlace.description = description;
+
   DUMMY_PLACES[placeIndex] = updatedPlace;
   // status code 200 not 201 bz we didnt create anything new
   res.status(200).json({ place: updatedPlace });
@@ -107,7 +109,7 @@ const deletePlace = (req, res, next) => {
   /*
   const placeId = req.params.pid;
   const placeIndex = DUMMY_PLACES.findIndex(p => p.id === placeId);
-  DUMMY_PLACES.splice(placeIndex,1);  
+  DUMMY_PLACES.splice(placeIndex,1);
   */
 };
 
@@ -124,12 +126,6 @@ exports.deletePlace = deletePlace;
 // uui package : a package which is capable fo genearting unique IDs
 
 /*
-
-
-
-
-
-
 
 
 
