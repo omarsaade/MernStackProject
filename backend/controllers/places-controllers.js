@@ -107,7 +107,7 @@ const deletePlace = (req, res, next) => {
   /*
   const placeId = req.params.pid;
   const placeIndex = DUMMY_PLACES.findIndex(p => p.id === placeId);
-  DUMMY_PLACES.splice(placeIndex,1);
+  DUMMY_PLACES.splice(placeIndex,1);  
   */
 };
 
