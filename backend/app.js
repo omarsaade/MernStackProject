@@ -5,10 +5,27 @@ const mongoose = require("mongoose");
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
+const corsNode = require("@omarsaade/cors-node");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(corsNode);
+
+// app.use((req, res, next) => {
+//   /* so here we can use the npm cors module library instead of these code below
+//   Max just wants to provide a view under the hood in such cases, so that
+//    you know what happens in the background
+//    if you use such a package (which you might do in practice).
+//   */
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin,X-Requested-With,Content-Type,Accept,Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
+//   next();
+// });
 
 app.use("/api/places", placesRoutes);
 app.use("/api/users", usersRoutes);
@@ -31,7 +48,7 @@ app.use((error, req, res, next) => {
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
-    "mongodb+srv://megamobile:megamobile111@cluster0.zktrumw.mongodb.net/places?retryWrites=true&w=majority",
+    "mongodb+srv://megamobile:megamobile111@cluster0.zktrumw.mongodb.net/mern?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
