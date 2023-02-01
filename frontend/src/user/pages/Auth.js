@@ -75,9 +75,7 @@ const Auth = () => {
           }
         );
         auth.login(responseData.user.id);
-      } catch (err) {
-        // we set everthing about catch in the hooks
-      }
+      } catch (err) {}
     } else {
       try {
         const responseData = await sendRequest(
@@ -131,8 +129,8 @@ const Auth = () => {
             id="password"
             type="password"
             label="Password"
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid password, at least 5 characters."
+            validators={[VALIDATOR_MINLENGTH(6)]}
+            errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>

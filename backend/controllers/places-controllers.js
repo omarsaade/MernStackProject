@@ -54,7 +54,7 @@ const getPlacesByUserId = async (req, res, next) => {
       new HttpError("Could not find places for the provided user id.", 404)
     );
   }
-
+  console.log(userWithPlaces);
   res.json({
     // another meth to remove _ and comvert to javascript object
     places: userWithPlaces.places.map((place) =>
