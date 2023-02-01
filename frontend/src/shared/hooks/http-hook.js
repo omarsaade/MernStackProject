@@ -18,6 +18,7 @@ So now this will basically store data across three renderer cycles, you could sa
       setIsLoading(true);
       const httpAbortCtrl = new AbortController(); // {signal: {aborted: false, reason: undefined, onabort: null} , abort() }
       activeHttpRequests.current.push(httpAbortCtrl); // [{signal: {aborted: false, reason: undefined, onabort: null} , abort() } ]
+
       try {
         const response = await fetch(url, {
           method,
@@ -31,6 +32,13 @@ So now this will basically store data across three renderer cycles, you could sa
 
         const responseData = await response.json();
         // baad a tebe3et el request w kelo ysir tamem
+        // console.log(activeHttpRequests.current);
+        /*
+       So here I want to filter all my request controllers and remove the request controller which I used for
+       this request, which I do with this logic.
+       This keeps every controller except for the controller which was used in this request.
+       We want to clear the abort controllers that belong to the request which just completed.
+        */
         activeHttpRequests.current = activeHttpRequests.current.filter(
           (reqCtrl) => reqCtrl !== httpAbortCtrl
         );
@@ -62,6 +70,7 @@ So now this will basically store data across three renderer cycles, you could sa
       activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);
+  //   console.log(activeHttpRequests.current);
 
   return { isLoading, error, sendRequest, clearError };
 };
