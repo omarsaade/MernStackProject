@@ -1,10 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const HttpError = require("./models/http-error");
 
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
-const HttpError = require("./models/http-error");
 const corsNode = require("@omarsaade/cors-node");
 
 const app = express();

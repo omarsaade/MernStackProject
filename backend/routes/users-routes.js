@@ -10,7 +10,7 @@ router.post(
   "/signup",
   [
     check("name").not().isEmpty(),
-    // check("email").normalizeEmail().isEmail(), cz it remove the .
+    // check("email").normalizeEmail().isEmail(), cz it remove the "."
     check("email").normalizeEmail({ gmail_remove_dots: false }).isEmail(),
     check("password").isLength({ min: 6 }),
   ],
