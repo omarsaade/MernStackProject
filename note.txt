@@ -132,3 +132,30 @@ google geocoding api
 ==================================================================================================================================
 ==================================================================================================================================
 ==================================================================================================================================
+
+How to upload multiple images instead of single image
+4 upvotes
+Lampros · Lecture 164 · 3 years ago
+Hello!
+
+I have spent many hours and days trying to figure out how multiple images upload can work on New Place form. I know it's not what this course handles, but as I am following and learning this course content all the way from the beginning, I am very confused on other tutorials about this issue.
+
+I have changed on the back-end on the router.post the fileUpload from  "fileUpload.single('image') to "fileUpload.array('image')"
+
+to accept an array of images.
+
+I have changed on the front-end on the ImageUpload Component, on the pickedHandler function like:
+
+if (event.target.files && event.target.files.length !== 0) {
+      pickedFile = event.target.files;
+and added multiple on the <input     multiple />
+
+I am not sure if the above changes are completely right and also,
+
+I don't know how is this going to work on the NewPlace Component (maybe with a loop?)
+
+I just want to make this work giving the possibility to the user to pick either one image either more than one.
+
+I really appreciate this work, and also understand that can't all topics be covered but i really need to know how I can handle this issue, cause my University thesis project is based on this course, and as it's maybe a quick change for someone, please share your knowledge.
+
+Thanks in advance
