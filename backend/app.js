@@ -12,7 +12,7 @@ const corsNode = require("@omarsaade/cors-node");
 const app = express();
 
 app.use(bodyParser.json());
-// console.log(path.join("uploads", "images"));//uploads\images
+console.log(path.join("uploads", "images")); //uploads\images
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
 
 app.use(corsNode);
