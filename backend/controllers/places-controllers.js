@@ -96,6 +96,8 @@ const createPlace = async (req, res, next) => {
     address,
     location: coordinates,
     image: req.file.path,
+    // we extract the id of creator from the token which cant be faked
+    // and not like title,desc...
     creator: req.userData.userId,
   });
 
