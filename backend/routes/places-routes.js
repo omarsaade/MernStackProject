@@ -14,6 +14,12 @@ router.get("/:pid", placesControllers.getPlaceById);
 //                       middleware function
 router.get("/user/:uid", placesControllers.getPlacesByUserId);
 
+//protects
+/*
+We then make sure that we also validate and verify this token so that we can protect certain routes
+with a middleware here against Unauthenticated Access, we check whether we do have a token and if it's
+a valid token, and then we can extract data from the token and attach this to our requests.
+*/
 router.use(checkAuth);
 
 // Protect these three routes by // router.use(checkAuth);

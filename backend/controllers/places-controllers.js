@@ -81,7 +81,7 @@ const createPlace = async (req, res, next) => {
     );
   }
 
-  const { title, description, address, creator } = req.body;
+  const { title, description, address } = req.body;
 
   let coordinates;
   try {
@@ -96,7 +96,7 @@ const createPlace = async (req, res, next) => {
     address,
     location: coordinates,
     image: req.file.path,
-    creator,
+    creator: req.userData.userId,
   });
 
   /*
@@ -112,7 +112,7 @@ For that.
 
   let user;
   try {
-    user = await User.findById(creator);
+    user = await User.findById(req.userData.userId);
   } catch (err) {
     const error = new HttpError("Creating place failed, please try again", 500);
     return next(error);
@@ -175,7 +175,8 @@ const updatePlace = async (req, res, next) => {
     );
     return next(error);
   }
-
+  // objectid()  .toString() to convert to a string
+  // Authorization
   if (place.creator.toString() !== req.userData.userId) {
     const error = new HttpError("You are not allowed to edit this place.", 401);
     return next(error);
@@ -208,6 +209,7 @@ You can specify the fields you want to exclude from .populate() as its second pa
 .populate('something', '-field1 -field2')
 
     */
+    //                                      full user object
     place = await Place.findById(placeId).populate("creator");
   } catch (err) {
     const error = new HttpError(
@@ -219,6 +221,15 @@ You can specify the fields you want to exclude from .populate() as its second pa
 
   if (!place) {
     const error = new HttpError("Could not find place for this id.", 404);
+    return next(error);
+  }
+  // check token req and id
+  // Authorization
+  if (place.creator.id !== req.userData.userId) {
+    const error = new HttpError(
+      "You are not allowed to delete this place.",
+      401
+    );
     return next(error);
   }
 
