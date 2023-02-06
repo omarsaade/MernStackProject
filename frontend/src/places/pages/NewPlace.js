@@ -42,6 +42,7 @@ const NewPlace = () => {
   );
 
   // const history = useHistory();
+  //
   let navigate = useNavigate();
 
   const placeSubmitHandler = async (event) => {
