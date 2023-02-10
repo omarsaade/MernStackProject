@@ -1,9 +1,0 @@
-{
-    "env":{
-        "DB_USER":"megamobile",
-        "DB_PASSWORD":"megamobile111",
-        "DB_NAME":"mern",
-        "GOOGLE_API_KEY": "pk.0a8ef5f905b4aaf8fb68f134c0da4969",
-        "JWT_KEY":"supersecret_dont_share"
-    }
-}
