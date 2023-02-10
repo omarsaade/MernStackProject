@@ -7,30 +7,30 @@ const HttpError = require("./models/http-error");
 
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
-const corsNode = require("@omarsaade/cors-node");
+// const corsNode = require("@omarsaade/cors-node");
 
 const app = express();
 
 app.use(bodyParser.json());
-console.log(path.join("uploads", "images")); //uploads\images
+// console.log(path.join("uploads", "images")); //uploads\images
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
 
-app.use(corsNode);
+// app.use(corsNode);
 
-// app.use((req, res, next) => {
-//   /* so here we can use the npm cors module library instead of these code below
-//   Max just wants to provide a view under the hood in such cases, so that
-//    you know what happens in the background
-//    if you use such a package (which you might do in practice).
-//   */
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Origin,X-Requested-With,Content-Type,Accept,Authorization"
-//   );
-//   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
-//   next();
-// });
+app.use((req, res, next) => {
+  /* so here we can use the npm cors module library instead of these code below
+  Max just wants to provide a view under the hood in such cases, so that
+   you know what happens in the background
+   if you use such a package (which you might do in practice).
+  */
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin,X-Requested-With,Content-Type,Accept,Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
+  next();
+});
 
 app.use("/api/places", placesRoutes);
 app.use("/api/users", usersRoutes);
